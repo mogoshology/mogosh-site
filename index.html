@@ -322,7 +322,7 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
 <body>
 
 <header class="top" id="top-bar">
-  <a class="logo" href="#top" data-go="top" aria-label="Михаил Могош, на главную"><img class="logo-mark" src="https://static.tildacdn.com/tild3234-6534-4861-b865-356366613531/MM_NoText_44x60.png" width="47" height="64" alt="Михаил Могош" decoding="async"></a>
+  <a class="logo" href="#top" data-go="top" aria-label="Михаил Могош, на главную"><img class="logo-mark" src="img/logo.png" width="46" height="64" alt="Михаил Могош" decoding="async"></a>
   <div class="top-r">
     <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu">
       <span class="menu-label">Меню</span>
@@ -344,7 +344,7 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
 
 <main id="top">
   <section class="hero" aria-label="Михаил Могош, ведущий свадеб">
-    <div class="hero-bg"><img alt="" width="1920" height="1280" fetchpriority="high" src="https://static.tildacdn.com/tild6138-3538-4565-b764-653564636532/photographer_okochet.jpg"></div>
+    <div class="hero-bg"><img alt="" width="1680" height="1105" fetchpriority="high" src="img/hero.jpg"></div>
     <div class="hero-shade"></div>
     <div class="wrap hero-inner">
       <p class="eyebrow">Ведущий свадеб с 2011 года</p>
@@ -364,7 +364,7 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
   <section class="about" id="about">
     <div class="wrap about-grid">
       <figure class="about-fig" data-reveal>
-        <div class="about-frame"><img alt="Михаил Могош" loading="lazy" decoding="async" width="2240" height="3360" src="https://static.tildacdn.com/tild6238-6233-4161-a136-396333333132/23.jpg"></div>
+        <div class="about-frame"><img alt="Михаил Могош" loading="lazy" decoding="async" width="1067" height="1600" src="img/about.jpg"></div>
       </figure>
       <div class="about-txt">
         <p class="eyebrow">Обо мне</p>
@@ -609,34 +609,34 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
   var G = window.gsap, ST = window.ScrollTrigger;
   var motion = !!(G && ST);
   if (motion) G.registerPlugin(ST);
-  var S = 'https://static.tildacdn.com/';
-  function src(p) { return S + p[0] + '/' + p[1]; }
+  function src(p) { return 'img/gallery/' + p[0]; }
+  function srcSm(p) { return 'img/gallery/sm/' + p[0]; }
   function pad(n) { return String(n).padStart(2, '0'); }
 
-  // [tilda id, файл, ширина, высота] в порядке текущего сайта
+  // [файл в img/gallery, ширина, высота оригинала]
   var PH = [
-    ['tild6664-3736-4934-b331-393966663961', '01.jpg', 1200, 800],
-    ['tild6535-3135-4331-b166-363563383162', '02_.jpg', 2000, 3000],
-    ['tild6531-3331-4165-b833-303232383863', '03.jpg', 1680, 2524],
-    ['tild3361-3237-4034-b461-616631333231', '04_.jpg', 1680, 1121],
-    ['tild3764-3163-4335-a636-326665326163', '05.jpg', 1680, 1119],
-    ['tild6636-6561-4663-b031-616261366165', '06.jpg', 1707, 2560],
-    ['tild3639-3734-4538-a137-633437333639', '07_.jpg', 2000, 2667],
-    ['tild3538-3634-4830-a339-623961633834', '08.jpg', 1280, 853],
-    ['tild3663-3336-4331-a134-343366633530', '09.jpg', 1680, 1121],
-    ['tild3962-6166-4165-a463-653534353365', '10.jpg', 1440, 2160],
-    ['tild6463-3533-4136-a234-383139623936', '11_.jpg', 2000, 3000],
-    ['tild3937-6330-4534-a663-636537643134', '12_.jpg', 1680, 1120],
-    ['tild3631-6361-4365-b438-653462633966', '13_.jpg', 1680, 1120],
-    ['tild3531-6332-4236-a130-353135646530', '14_.jpg', 2000, 3000],
-    ['tild3633-3165-4533-a536-646464316463', '15_.jpg', 2000, 3000],
-    ['tild6663-3830-4839-b838-323461356662', '16.jpg', 900, 601],
-    ['tild3664-3530-4232-a563-386539613564', '17.jpg', 1680, 1180],
-    ['tild3933-3732-4862-a131-343237363836', '18.png', 1039, 1303],
-    ['tild3637-3133-4338-b634-326631656636', '19.jpg', 2000, 3000],
-    ['tild3262-3061-4335-b337-363064313032', '21_.jpg', 1680, 1120],
-    ['tild6139-3734-4466-a162-356636313935', '24.jpg', 1680, 1115],
-    ['tild6163-6262-4539-b165-323534363932', '22.jpg', 2667, 4000]
+    ['01.jpg', 1200, 800],
+    ['02.jpg', 2000, 3000],
+    ['03.jpg', 1680, 2524],
+    ['04.jpg', 1680, 1121],
+    ['05.jpg', 1680, 1119],
+    ['06.jpg', 1707, 2560],
+    ['07.jpg', 2000, 2667],
+    ['08.jpg', 1280, 853],
+    ['09.jpg', 1680, 1121],
+    ['10.jpg', 1440, 2160],
+    ['11.jpg', 2000, 3000],
+    ['12.jpg', 1680, 1120],
+    ['13.jpg', 1680, 1120],
+    ['14.jpg', 2000, 3000],
+    ['15.jpg', 2000, 3000],
+    ['16.jpg', 900, 601],
+    ['17.jpg', 1680, 1180],
+    ['18.jpg', 1039, 1303],
+    ['19.jpg', 2000, 3000],
+    ['21.jpg', 1680, 1120],
+    ['24.jpg', 1680, 1115],
+    ['22.jpg', 2667, 4000]
   ];
 
   /* ---------- шапка ---------- */
@@ -1019,7 +1019,7 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
     row.hidden = false;
     row.innerHTML = PH.map(function (p, i) {
       return '<button class="pf-item" type="button" data-i="' + i + '" aria-label="Открыть фото ' + (i + 1) + '">' +
-        '<img loading="lazy" decoding="async" alt="Фото со свадьбы ' + (i + 1) + '" width="' + Math.round(p[2] / p[3] * 480) + '" height="480" src="' + src(p) + '"></button>';
+        '<img loading="lazy" decoding="async" alt="Фото со свадьбы ' + (i + 1) + '" width="' + Math.round(p[1] / p[2] * 480) + '" height="480" src="' + srcSm(p) + '"></button>';
     }).join('');
     row.addEventListener('click', function (e) { var b = e.target.closest('.pf-item'); if (b) openLb(+b.dataset.i); });
   }
@@ -1308,7 +1308,7 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
           } else fin(shrink(im, 1100));
         };
         im.onerror = function () { fails++; if (fails >= 3 && !Object.keys(texs).length) failAll(); resolve(); };
-        im.src = src(PH[p]);
+        im.src = srcSm(PH[p]);
       });
     }
     var order = [], seen = {};
