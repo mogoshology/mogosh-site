@@ -289,9 +289,9 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
 .lb-prev { left: max(10px, env(safe-area-inset-left, 0px)); }
 .lb-next { right: max(10px, env(safe-area-inset-right, 0px)); }
 
-.arc-open { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 40; display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 16px 0 12px; background: rgba(11, 11, 13, .78); border: 1px solid var(--gold); border-radius: 2px; color: var(--gold-hi); font: 400 .62rem/1 'Press Start 2P', var(--f-sans); letter-spacing: .04em; text-transform: uppercase; cursor: pointer; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background .3s, color .3s, transform .3s; }
-.arc-open:hover { background: var(--gold); color: var(--on-gold); transform: translateY(-2px); }
-.arc-open canvas { width: 22px; height: 27.5px; image-rendering: pixelated; }
+.arc-open { position: fixed; right: max(16px, env(safe-area-inset-right, 0px)); bottom: max(16px, env(safe-area-inset-bottom, 0px)); z-index: 40; display: grid; place-items: center; width: 48px; height: 48px; padding: 0; background: rgba(11, 11, 13, .78); border: 1px solid var(--gold); border-radius: 2px; cursor: pointer; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); transition: background .3s, color .3s, transform .3s; }
+.arc-open:hover { background: var(--gold); transform: translateY(-2px); }
+.arc-open canvas { width: 32px; height: 32px; image-rendering: pixelated; }
 .arc { position: fixed; inset: 0; z-index: 90; display: grid; place-items: center; padding: max(12px, env(safe-area-inset-top, 0px)) max(12px, env(safe-area-inset-right, 0px)) max(12px, env(safe-area-inset-bottom, 0px)) max(12px, env(safe-area-inset-left, 0px)); background: rgba(5, 5, 7, .9); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .arc[hidden] { display: none; }
 .arc-panel { width: min(440px, 100%); max-height: 100%; display: grid; grid-template-rows: auto auto minmax(0, 1fr); background: #08080a; border: 1px solid var(--line-2); box-shadow: 0 30px 90px rgba(0, 0, 0, .6); font-family: 'Press Start 2P', var(--f-sans); }
@@ -315,7 +315,6 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
 .arc-b.ghost { background: transparent; color: var(--gold-hi); }
 .arc-b.ghost:hover { background: rgba(201, 174, 128, .18); }
 .arc-hint { margin: 0; padding: 10px 16px 12px; border-top: 1px solid var(--line); font-size: .5rem; line-height: 1.8; color: var(--mute); text-transform: uppercase; letter-spacing: .04em; }
-@media (max-width: 480px) { .arc-open span { display: none; } .arc-open { padding: 0 10px; } }
 @media (max-width: 960px) {
   .about-grid, .process-grid, .price-top, .charity .wrap, .contacts-grid { grid-template-columns: minmax(0, 1fr); }
   .about-fig { position: relative; top: 0; max-width: 460px; }
@@ -588,7 +587,7 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
   </div>
 </div>
 
-<button class="arc-open" id="arc-open" type="button" aria-label="Свадебная аркада: сыграй и получи скидку 10%"><canvas id="arc-ico" width="28" height="35" aria-hidden="true"></canvas><span>Скидка 10%</span></button>
+<button class="arc-open" id="arc-open" type="button" aria-label="Свадебная аркада: сыграй и получи скидку 10%"><canvas id="arc-ico" width="16" height="16" aria-hidden="true"></canvas></button>
 
 <div class="arc" id="arc" hidden role="dialog" aria-modal="true" aria-labelledby="arc-t">
   <div class="arc-panel">
@@ -1005,10 +1004,35 @@ html.gal-on .top { opacity: 0; visibility: hidden; pointer-events: none; }
     var b = this, old = b.textContent, done = function () { b.textContent = 'Скопировано'; setTimeout(function () { b.textContent = old; }, 1600); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(ARC_CODE).then(done, done); else done();
   });
-  (function () { /* иконка-букет на кнопке входа */
-    var ic = $('#arc-ico'), x = ic.getContext('2d'), im = new Image();
-    im.onload = function () { x.drawImage(im, 0, 0); };
-    im.src = SPR.bq;
+  (function () {
+    var icon = $('#arc-ico').getContext('2d');
+    if (!icon) return;
+    var pixels = [
+      '................',
+      '....##....##....',
+      '...#yy#..#yy#...',
+      '...#y.y##y.y#...',
+      '....#yyyyyy#....',
+      '..############..',
+      '.#rrryyyyyyrrr#.',
+      '.#rrrryyyyrrrr#.',
+      '..############..',
+      '..#rrryyyyrrr#..',
+      '..#rrryyyyrrr#..',
+      '..#rrryyyyrrr#..',
+      '..#sssyyyysss#..',
+      '..#sssyyyysss#..',
+      '...##########...',
+      '................'
+    ];
+    var colors = { '#': '#311619', y: '#ffe09b', r: '#ed6650', s: '#b33f38' };
+    pixels.forEach(function (row, y) {
+      Array.from(row).forEach(function (pixel, x) {
+        if (pixel === '.') return;
+        icon.fillStyle = colors[pixel];
+        icon.fillRect(x, y, 1, 1);
+      });
+    });
   })();
 
   /* ---------- переходы по разделам ---------- */
